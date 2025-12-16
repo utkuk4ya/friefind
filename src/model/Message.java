@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDateTime;
 
 public class Message {
+	
     private User sender;
     private User receiver;
     private String content;

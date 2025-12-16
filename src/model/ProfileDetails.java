@@ -11,6 +11,6 @@ public class ProfileDetails {
 
  @Override
  public String toString() {
-     return "Bio: " + bio + " | Hobby: " + hobby;
+     return "\nBio: " + bio + " | Hobby: " + hobby;
  }
 }

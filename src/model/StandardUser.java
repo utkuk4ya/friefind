@@ -2,13 +2,13 @@ package model;
 
 public class StandardUser extends User {
 
-	public StandardUser(int id, String name, int age, ProfileDetails details) {
-		super(id, name, age, details);
+	public StandardUser(int id, String name, int age, ProfileDetails details, String city) {
+		super(id, name, age, details, city);
 	}
 
 	@Override
 	public void showProfileType() {
-		System.out.println("Type: Standard Member (Free)");
+		System.out.println("\nStandard Member (Free)");
 	}
 
 	public void swipeRight(User targetUser) {
@@ -22,7 +22,7 @@ public class StandardUser extends User {
 	
 	@Override
 	public String toString() {
-		return "Standard User" + super.toString();
+		return super.toString();
 	}
 
 }

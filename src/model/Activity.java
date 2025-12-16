@@ -15,12 +15,11 @@ public class Activity {
     }
 
     public Activity() {
-	
+	 
 	}
 
 
 	public void getInput() {
-       
     	Scanner inp = new Scanner(System.in);
         System.out.println("Enter activity details: ");
         System.out.println("Enter type: ");
@@ -29,8 +28,6 @@ public class Activity {
         this.price = inp.nextDouble();
         System.out.println("Enter duration: ");
         this.duration = inp.nextInt();
-   
-        
     }
 
     public void applyDiscount(boolean hasCoupon) {
