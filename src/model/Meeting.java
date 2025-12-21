@@ -34,6 +34,5 @@ public class Meeting {
 	public Activity getActivity() {
 		return activity;
 	}
-    
- 
+
 }

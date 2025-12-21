@@ -13,6 +13,7 @@ public class FriefindSystem {
 
 	static ArrayList<User> userList = new ArrayList<>();;
 	private static HashSet<Integer> userIdSet = new HashSet<>();
+	private static ArrayList<Meeting> meetingList = new ArrayList<>();
 
 	public static void readTxt() throws FileNotFoundException {
 
@@ -80,37 +81,49 @@ public class FriefindSystem {
 			}
 		}
 	}
+	public static String displayAllUsersString() {
+	    String s = "--- All Friefind Users ---\n\n";
+	    if (userList.isEmpty()) {
+	        s += "No users found.\n";
+	    } else {
+	        for (User u : userList) {
+	            s += u.toString() + "\n\n\n";
+	        }
+	    }
+	    return s;
+	}
 
-	public static Meeting setMeeting(User U1, User U2, Location location) {
+
+	public static Meeting setMeeting(User U1, User U2, Location location, Activity activity, String time) {
 		Scanner scanner = new Scanner(System.in);
-
-		Activity activity = new Activity();
+		Meeting meeting = new Meeting(U1, U2, location, activity, time);
+		/*Activity activity = new Activity();
 
 		activity.getInput();
 
 		System.out.print("Enter meeting time (e.g., 09/09/2025): ");
 		String time = scanner.nextLine();
-		Meeting meeting = new Meeting(U1, U2, location, activity, time);
+    
+        System.out.print("\nDo you want to change the time? (Y/N): ");
+        String choice = scanner.nextLine();
 
-		System.out.println("\n--- Meeting Created Successfully ---");
-		System.out.println(meeting.toString());
+        if (choice.equalsIgnoreCase("Y")) {
+            System.out.print("Enter new time: ");
+            String newTime = scanner.nextLine();
+            
+        
+            meeting.activity.setTime(newTime);
+            
+            System.out.println("\nTime updated.");
+            System.out.println("Updated Meeting Details:");
+            System.out.println(meeting.toString());
+        } else {
+            System.out.println("Meeting confirmed.");
+        }*/
+		meetingList.add(meeting);
+        return meeting;
+    }
 
-		System.out.print("\nDo you want to change the time? (Y/N): ");
-		String choice = scanner.nextLine();
-
-		if (choice.equalsIgnoreCase("Y")) {
-			System.out.print("Enter new time: ");
-			String newTime = scanner.nextLine();
-			meeting.setTime(newTime);
-
-			System.out.println("\nTime updated.");
-			System.out.println("Updated Meeting Details:");
-			System.out.println(meeting.toString());
-		} else {
-			System.out.println("Meeting confirmed.");
-		}
-		return meeting;
-	}
 
 	public static User searchUser(String name) {
 		for (User u : userList) {
@@ -123,6 +136,14 @@ public class FriefindSystem {
 		return null;
 	}
 
+	public static User searchUser(int id) {
+	    for (User u : userList) {
+	        if (u.getId() == id) return u;
+	    }
+	    return null;
+	}
+
+	
 	public static void deleteUser(int id) {
 		Iterator<User> iterator = userList.iterator();
 		while (iterator.hasNext()) {
@@ -149,6 +170,26 @@ public class FriefindSystem {
 		}
 		double avg = (double) sum / userList.size();
 		System.out.println("Average Age of Users: " + String.format("%.2f", avg));
+	}
+	
+	public static double calculateAverageAgeValue() {
+	    if (userList.isEmpty()) return 0.0;
+
+	    int sum = 0;
+	    for (User u : userList) sum += u.getAge();
+	    return (double) sum / userList.size();
+	}
+	
+	public static String displayMeetings() {
+	    String s = "\n--- Scheduled Meetings ---\n";
+	    if (meetingList.isEmpty()) {
+	        s += "No meetings scheduled yet.\n";
+	    } else {
+	        for (Meeting m : meetingList) {
+	            s += m.toString() + "\n--------------------\n";
+	        }
+	    }
+	    return s;
 	}
 	
 	public static User createNewUser() {
@@ -197,4 +238,10 @@ public class FriefindSystem {
 	    
 	    return newUser;
 	}
-}
+	
+	public static ArrayList<User> getUsers() {
+	    return userList;
+	}
+
+	
+} 
